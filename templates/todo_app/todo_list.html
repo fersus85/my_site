@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %} To do {% endblock %}
 {% block content %}
 <div>
     <div>
@@ -9,6 +9,18 @@
         </div>
         <ul>
             {% for todo in object_list %}
+            {% if todo.is_done %}
+            <li>
+                <div>
+                    <div
+                        role="button"
+                        onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
+                        <s>{{ todo.title }}
+                        (Due {{ todo.due_date | date:"l, F j" }}) </s>
+                    </div>
+                </div>
+            </li>
+           {% else %}
             <li>
                 <div>
                     <div
@@ -19,6 +31,7 @@
                     </div>
                 </div>
             </li>
+        {% endif %}
             {% empty %}
             <p>There are no to-do items in this list.</p>
             {% endfor %}
@@ -33,6 +46,11 @@
                 type="button"
                 onclick="location.href=
                 '{% url "list-delete" todo_list.id %}'">
+            <input
+                value="Back to lists"
+                type="button"
+                onclick="location.href=
+                '{% url "index" %}'">
         </p>
     </div>
 </div>

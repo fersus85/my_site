@@ -3,9 +3,14 @@ from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from .models import ToDoList, ToDoItem
 
 
-class ListListView(ListView):
+class MainPage(ListView):
     model = ToDoList
     template_name = "todo_app/index.html"
+
+
+class ListListView(ListView):
+    model = ToDoList
+    template_name = "todo_app/main_todo.html"
 
 
 class ItemListView(ListView):
@@ -64,6 +69,7 @@ class ItemUpdate(UpdateView):
         "title",
         "description",
         "due_date",
+        "is_done",
     ]
 
     def get_context_data(self):

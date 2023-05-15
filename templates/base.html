@@ -7,13 +7,34 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--Simple.css-->
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>Deriabin</title>
+    <title>{% block title %} Deriabin {% endblock %}</title>
 </head>
 
 <body>
+    <div class="header">
+        <ul class="mainmenu">
+            <li class="logo">
+                <a href="{% url 'home' %}">
+                    <div class="logo"> <img src="{% static 'images/logo1.jpg' %}"></div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'index' %}">To do List </a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">Read</a>
+            </li>
+            <li>
+                <a href="#">Run</a>
+            </li>
+        </ul>
+
+    </div>
 
     <div>
         {% block content %}
