@@ -5,53 +5,58 @@
     <div>
         <div>
             <h3>Edit list:</h3>
-            <h5>{{ todo_list.title | upper }}</h5>
+            <h3>{{ todo_list.title | upper }}</h3>
         </div>
-        <ul>
+
             {% for todo in object_list %}
             {% if todo.is_done %}
-            <li>
+
                 <div>
                     <div
+                        class="button"
                         role="button"
                         onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
-                        <s>{{ todo.title }}
-                        (Due {{ todo.due_date | date:"l, F j" }}) </s>
+                        <p class="btn"><s>{{ todo.title }}
+                            (Due {{ todo.due_date | date:"l, F j" }}) </s></p>
                     </div>
                 </div>
-            </li>
+
            {% else %}
-            <li>
+
                 <div>
                     <div
+                        class="button"
                         role="button"
                         onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
-                        {{ todo.title }}
-                        (Due {{ todo.due_date | date:"l, F j" }})
+                        <p class="btn"> {{ todo.title }}
+                        (Due {{ todo.due_date | date:"l, F j" }})</p>
                     </div>
                 </div>
-            </li>
+
         {% endif %}
             {% empty %}
             <p>There are no to-do items in this list.</p>
             {% endfor %}
-        </ul>
-        <p>
+
+        <div class="flor">
             <input
+                class="but"
                 value="Add a new item"
                 type="button"
                 onclick="location.href='{% url "item-add" todo_list.id %}'">
             <input
+                class="but"
                 value="Delete this list"
                 type="button"
                 onclick="location.href=
                 '{% url "list-delete" todo_list.id %}'">
             <input
+                class="but"
                 value="Back to lists"
                 type="button"
                 onclick="location.href=
                 '{% url "index" %}'">
-        </p>
+        </div>
     </div>
 </div>
 {% endblock %}
