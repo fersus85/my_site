@@ -9,11 +9,25 @@
         <h4>{{ object.title}}</h4>
         <p>{{ object.body }}</p>
     </div>
-        <div class="b">
+<div class="b">
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "blog_home" %}'"/>
     Back to all notes
     </button>
-    </div>
+</div>
+<div class="b">
+    <button
+        type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "post_edit" post.pk %}'"/>
+    Edit post
+    </button>
+</div>
+<div class="b">
+    <button
+        type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "post_delete" post.pk %}'"/>
+    Delete post
+    </button>
+</div>
 {% endblock %}

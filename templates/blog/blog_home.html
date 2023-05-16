@@ -14,5 +14,11 @@
         <p>{{ post.body }}</p>
     </div>
     {% endfor %}
-
+    <div class="b">
+    <button
+        type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "post_new" %}'"/>
+        New blog post
+    </button>
+    </div>
 {% endblock %}
