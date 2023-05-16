@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Blog {% endblock %}
+
+{% block content %}
+
+<!--index.html-->
+{% if object_list %}
+<h3>All my notes </h3>
+{% endif %}
+
+    {% for post in object_list %}
+    <div class="button">
+        <h4><a href="{% url 'post_detail' post.id %}"> {{ post.title }}</a> </h4>
+        <p>{{ post.body }}</p>
+    </div>
+    {% endfor %}
+
+{% endblock %}

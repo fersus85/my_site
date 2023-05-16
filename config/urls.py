@@ -21,5 +21,6 @@ from todo_app.views import MainPage
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("todo_app.urls")),
+    path("", include("blog.urls")),
     path("", MainPage.as_view(), name='home')
 ]

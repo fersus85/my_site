@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} {{ object.title}} {% endblock %}
+
+{% block content %}
+
+<!--index.html-->
+
+    <div class="button">
+        <h4>{{ object.title}}</h4>
+        <p>{{ object.body }}</p>
+    </div>
+        <div class="b">
+    <button
+        type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "blog_home" %}'"/>
+    Back to all notes
+    </button>
+    </div>
+{% endblock %}

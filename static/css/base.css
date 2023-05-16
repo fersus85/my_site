@@ -11,9 +11,9 @@ h3{
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-    background-color: #A5BEC4;
-    border-radius: 25px;
-    text-align: center;
+  background-color: #A5BEC4;
+  border-radius: 25px;
+  text-align: center;
 }
 .b{
   margin-top: 20px;
@@ -38,6 +38,10 @@ h3{
     background:#4B5650;
     height: 30px;
     width: 180px;
+}
+.text{
+    margin: auto;
+    width: 8em;
 }
 ul.mainmenu {
 	list-style: none;
