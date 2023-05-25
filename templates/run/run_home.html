@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} Run {% endblock %}
+{% block content %}
+
+<table border="1" class="table" style="width:80%">
+    <caption>Running achievements</caption>
+    <tr>
+        <th>Year</th>
+        <th>January</th>
+        <th>February</th>
+        <th>March</th>
+        <th>April</th>
+        <th>May</th>
+        <th>June</th>
+        <th>July</th>
+        <th>August</th>
+        <th>September</th>
+        <th>October</th>
+        <th>November</th>
+        <th>December</th>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td>2015</td>
+        {% for i in twfif %}
+        <td> {{ i.total }}</td>
+        {% endfor %}
+         <td> {{ tf_tot.total }}</td>
+    </tr>
+    <tr>
+        <td>2016</td>
+        {% for i in twsix %}
+        <td> {{ i.total }}</td>
+        {% endfor %}
+        <td> {{ ts_tot.total }}</td>
+    </tr>
+    <tr>
+        <td>2017</td>
+        {% for i in twsev %}
+        <td> {{ i.total }}</td>
+        {% endfor %}
+         <td> {{ tse_tot.total }}</td>
+    </tr>
+
+</table>
+{% endblock %}

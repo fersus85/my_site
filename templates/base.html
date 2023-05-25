@@ -31,12 +31,25 @@
                 <a href="#">Read</a>
             </li>
             <li>
-                <a href="#">Run</a>
+                <a href="{% url 'run_home' %}">Run</a>
             </li>
+            {% if not user.is_authenticated %}
+            <li>
+                <a href="{% url 'login' %}">Log in</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'logout' %}">Log out</a>
+            </li>
+            {% endif %}
         </ul>
 
     </div>
-
+{% if  user.is_authenticated %}
+    <p>Hi, {{ user.username }}!</p>
+    {% else %}
+    <p>You're not logged in </p>
+    {% endif %}
     <div>
         {% block content %}
 
