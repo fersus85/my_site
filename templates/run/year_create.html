@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} New Year {% endblock title %}
+
+{% block content %}
+<p> Add new running year </p>
+<form action="" method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-secondary" >Add new year</button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} New Month {% endblock title %}
+
+{% block content %}
+<p> Add new running month </p>
+<form action="" method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-secondary" >Add new month</button>
+</form>
+
+{% endblock content %}
