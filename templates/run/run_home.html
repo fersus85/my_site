@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-
+{% load run_tags %}
 {% block title %} Run {% endblock title %}
 
 {% block content %}
+<h2>This is app for contain your running goals. </h2>
 
 <table border="1" class="table table-striped" style="width:80%">
   <thead>
@@ -17,14 +18,10 @@
   {% for year in years %}
   <tr>
       <th> {{ year.title }} </th>
-
+      <td class="table-primary">{% get_total year %}</td>
         {% for month in year.monthes.all %}
          <td>{{ month.total }}</td>
          {% endfor %}
-
-
-
-       <td>{{ year.total }}</td>
   </tr>
   {% endfor %}
   <tbody>
@@ -36,4 +33,10 @@ Add new year</button>
         onclick="location.href='{% url "new_month" %}'"/>
 Add new month
 </button>
+<button type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "year_list" %}'"/>
+Edit or delete year
+</button>
+
+
 {% endblock content %}

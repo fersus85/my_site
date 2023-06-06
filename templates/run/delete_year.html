@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete year {% endblock title %}
+
+{% block content %}
+<p> Delete year </p>
+<form action="" method="post"> {% csrf_token %}
+    <p>Are you sure want to delete {{ year.title }} | {{ year.owner }}?</p>
+    <button type="submit" class="btn btn-danger" >Delete</button>
+</form>
+
+{% endblock content %}

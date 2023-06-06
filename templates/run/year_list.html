@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete or edit  {% endblock title %}
+
+{% block content %}
+<div class="article-entry">
+<h3> Delete or edit </h3>
+{% for year in years %}
+<p>{{ year.title }} | {{ year.owner }}</p>
+
+<button type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "delete_year" year.pk %}'"/>
+Delete year
+</button>
+ <button type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "edit_year" year.pk %}'"/>
+Edit year
+</button>
+    </div>
+{% endfor %}
+
+{% endblock content %}

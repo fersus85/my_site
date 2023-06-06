@@ -10,7 +10,8 @@ class Year(models.Model):
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default='1')
 
     def __str__(self):
-        return str(self.title)
+        t = str(self.title)
+        return t + '|' + self.owner.username
 
     def get_absolute_url(self):
         return reverse('run_home')
