@@ -24,13 +24,13 @@
            {% else %}
 
                 <div>
-                    <div
-                        class="button"
-                        role="button"
-                        onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
-                        <p class="btn"> {{ todo.title }}
-                        (Due {{ todo.due_date | date:"l, F j" }})</p>
-                    </div>
+<ul class="list-group ">
+  <li class="list-group-item list-group-item-dark justify-content-between align-items-center">
+      <a href="{% url "item-update" todo_list.id todo.id %}">{{ todo.title }}</a>
+    <span class="badge badge-primary badge-pill">todo</span>
+  </li>
+
+</ul>
                 </div>
 
            {% endif %}
@@ -38,26 +38,14 @@
 
             <p><center>There are no to-do items in this list.</center></p>
             {% endfor %}
-
-        <div class="flor">
-            <input
-                class="but"
-                value="Add a new item"
-                type="button"
-                onclick="location.href='{% url "item-add" todo_list.id %}'">
-            <input
-                class="but"
-                value="Delete this list"
-                type="button"
-                onclick="location.href=
-                '{% url "list-delete" todo_list.id %}'">
-            <input
-                class="but"
-                value="Back to lists"
-                type="button"
-                onclick="location.href=
-                '{% url "index" %}'">
-        </div>
-    </div>
+<p></p>
+  <div class="flor_but">
+            <button type="button" onclick="location.href='{% url "item-add" todo_list.id %}'"
+                class="btn btn-outline-secondary" >Add a new item</button>
+            <button type="button" onclick="location.href='{%  url "list-delete" todo_list.id  %}'"
+                class="btn btn-outline-secondary" >Delete this list </button>
+            <button type="button" onclick="location.href='{% url "index" %}'"
+                class="btn btn-outline-secondary" >Back to lists</button>
 </div>
+
 {% endblock %}

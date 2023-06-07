@@ -9,4 +9,6 @@ urlpatterns = [
     path("<int:pk>/edit_year/", views.RunYearUpdateView.as_view(), name="edit_year"),
     path("year_list/", views.RunYearListView.as_view(), name="year_list"),
     path("<int:pk>/", views.RunDetailView.as_view(), name="detail_year"),
+    path("month_list/", views.RunMonthListView.as_view(), name="month_list"),
+    path("<int:pk>/edit_month/", views.RunMonthUpdateView.as_view(), name="edit_month"),
 ]

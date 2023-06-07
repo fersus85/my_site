@@ -6,12 +6,6 @@ from .models import Year, Month
 
 # Create your views here.
 
-class RunMonthDeleteView(LoginRequiredMixin, CreateView):
-    model = Month
-    fields = ('title', 'total', 'year')
-    template_name = 'run/month_delete.html'
-    success_url = reverse_lazy('run_home')
-
 
 class RunMontCreateView(LoginRequiredMixin, CreateView):
     model = Month
@@ -94,6 +88,27 @@ class RunYearUpdateView(UserPassesTestMixin, UpdateView):
     model = Year
     fields = ('title', 'total',)
     template_name = 'run/edit_year.html'
+    success_url = reverse_lazy('run_home')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.owner == self.request.user
+
+
+class RunMonthListView(LoginRequiredMixin, ListView):
+    model = Month
+    template_name = "run/month_list.html"
+    context_object_name = 'monthlies'
+
+    def get_queryset(self):
+        cur_user = self.request.user
+        return Month.objects.filter(owner=cur_user.id)
+
+
+class RunMonthUpdateView(UserPassesTestMixin, UpdateView):
+    model = Month
+    fields = ('title', 'total', 'year')
+    template_name = 'run/edit_month.html'
     success_url = reverse_lazy('run_home')
 
     def test_func(self):

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load run_tags %}
+{% load static %}
 {% block title %} Run {% endblock title %}
 
 {% block content %}
-<h2>This is app for contain your running goals. </h2>
+<h2 align="center"><font color="1B545F" face="Ubuntu">This is app for contain your running goals.</font> </h2>
+<p></p>
+<p>First you add the year, then the month and the number of kilometers you ran.</p>
 
 <table border="1" class="table table-striped" style="width:80%">
   <thead>
@@ -37,6 +40,13 @@ Add new month
         onclick="location.href='{% url "year_list" %}'"/>
 Edit or delete year
 </button>
+<button type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "month_list" %}'"/>
+Edit month
+</button>
+<div>
+    <img src="{% static 'images/buty1.jpg' %}"  class="img-fluid" alt="Responsive image">
+</div>
 
 
 {% endblock content %}

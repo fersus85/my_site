@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} New Year {% endblock title %}
+{% block title %} Edit month {% endblock title %}
 
 {% block content %}
-<h4> Add new running year! </h4>
+<h3> Edit month </h3>
 <form action="" method="post"> {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-outline-secondary" >Add new year</button>
+    <button type="submit" class="btn btn-outline-secondary" >Save</button>
 </form>
 
 {% endblock content %}
