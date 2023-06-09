@@ -22,19 +22,21 @@ class RunYearCreateView(LoginRequiredMixin, CreateView):
     fields = ('title', 'total',)
     template_name = 'run/year_create.html'
 
+    def get_context_data(self):
+        context = super().get_context_data()
+        if str(self.request.user) != 'Fersus':
+            context['user'] = str(self.request.user)
+        return context
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
 
-class RunListView(LoginRequiredMixin, ListView):
+class RunListView(ListView):
     model = Year
     template_name = "run/run_home.html"
     context_object_name = 'years'
-
-    def get_queryset(self):
-        cur_user = self.request.user
-        return Year.objects.filter(owner=cur_user.id)
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -54,7 +56,9 @@ class RunListView(LoginRequiredMixin, ListView):
             'December',
 
         ]
+        user = self.request.user
         context["monthlies"] = monthlies
+        context['user'] = user
         return context
 
 
@@ -73,7 +77,7 @@ class RunYearListView(LoginRequiredMixin, ListView):
         return Year.objects.filter(owner=cur_user.id)
 
 
-class RunYearDeleteView(UserPassesTestMixin, DeleteView):
+class RunYearDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Year
     fields = ('title', 'total', 'year')
     template_name = 'run/delete_year.html'

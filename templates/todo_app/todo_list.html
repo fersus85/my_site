@@ -1,37 +1,38 @@
 {% extends "base.html" %}
 {% block title %} To do {% endblock %}
+{% load static %}
 {% block content %}
+<img class="td" src="{% static 'images/lf.png' %}">
 <div>
     <div>
         <div>
-            <h3>Edit list:</h3>
-            <h3>{{ todo_list.title | upper }}</h3>
+            <h3 class="h3">Edit list:</h3>
+            <h3 class="h3">{{ todo_list.title | upper }}</h3>
         </div>
 
             {% for todo in object_list %}
             {% if todo.is_done %}
 
-                <div>
+
                     <div
-                        class="button"
+                        class="list-todo"
                         role="button"
                         onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
                         <p class="btn"><s>{{ todo.title }}
                             (Due {{ todo.due_date | date:"l, F j" }}) </s></p>
-                    </div>
                 </div>
+<p></p>
 
            {% else %}
 
-                <div>
-<ul class="list-group ">
-  <li class="list-group-item list-group-item-dark justify-content-between align-items-center">
-      <a href="{% url "item-update" todo_list.id todo.id %}">{{ todo.title }}</a>
-    <span class="badge badge-primary badge-pill">todo</span>
-  </li>
+        <div
+            class="list-todo"
+            role="button"
+            onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
+            <p> <span class="badge badge-secondary badge-pill">todo</span> {{ todo.title }}</p>
 
-</ul>
-                </div>
+        </div>
+    <p></p>
 
            {% endif %}
             {% empty %}
@@ -39,7 +40,7 @@
             <p><center>There are no to-do items in this list.</center></p>
             {% endfor %}
 <p></p>
-  <div class="flor_but">
+  <div class="flor-but">
             <button type="button" onclick="location.href='{% url "item-add" todo_list.id %}'"
                 class="btn btn-outline-secondary" >Add a new item</button>
             <button type="button" onclick="location.href='{%  url "list-delete" todo_list.id  %}'"

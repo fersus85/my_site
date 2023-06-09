@@ -1,19 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Blog {% endblock %}
-
+{% load static %}
 {% block content %}
 
 <!--index.html-->
-{% if object_list %}
-<h3>All my notes </h3>
-{% endif %}
-
-    {% for post in object_list %}
-    <div class="button">
-        <h4><a href="{% url 'post_detail' post.id %}"> {{ post.title }}</a> </h4>
-        <p>{{ post.body }}</p>
-    </div>
-    {% endfor %}
+<div style="background-color: #DDDFD4;">
+<h3 class="h3">All my notes </h3>
     <div class="b">
     <button
         type="button" class="btn btn-outline-secondary"
@@ -21,4 +13,19 @@
         New blog post
     </button>
     </div>
+
+    {% for post in object_list %}
+<article class="post">
+    <img class="post-img" style="" src="{% static 'images/blog.jpg' %}" >
+    <h3 class="h3" style="color: #5A8687;"> <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> </h3>
+    <p style="text-align: center;">author: {{ post.author }} | {{ post.date }}</p>
+    <hr>
+     <p style="text-align: left;">{{ post.body|truncatewords:13 }}...</p>
+
+    <div class="uk">
+    <a href="{% url 'post_detail' post.id %}">Read more >>></a>
+    </div>
+</article>
+    {% endfor %}
+</div>
 {% endblock %}

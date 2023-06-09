@@ -1,29 +1,30 @@
 {% extends "base.html" %}
 {% block title %} {{ object.title}} {% endblock %}
-
+{% load static %}
 {% block content %}
 
 <!--index.html-->
-
-    <div class="button">
-        <h4>{{ object.title}}</h4>
+ <img class="img-post-det" style="" src="{% static 'images/bl.png' %}" >
+ <img class="img-post-det2" style="" src="{% static 'images/bl.png' %}" >
+    <div class="post-detail">
+        <h3 class="h3">{{ object.title}}</h3>
+        <p style="text-align: center;"> author: {{ object.author }} | {{ object.date }}</p>
+        <hr>
         <p>{{ object.body }}</p>
     </div>
-<div class="b">
+<div class="btn-bot">
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "blog_home" %}'"/>
     Back to all notes
     </button>
-</div>
-<div class="b">
+
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "post_edit" post.pk %}'"/>
     Edit post
     </button>
-</div>
-<div class="b">
+
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "post_delete" post.pk %}'"/>

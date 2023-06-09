@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 {% block title %} To do {% endblock %}
-
+{% load static %}
 {% block content %}
-
+<img class="td" src="{% static 'images/lf.png' %}">
 <!--index.html-->
+<div class="todo">
 {% if object_list %}
-<h3>All my lists</h3>
+<h3 class="h3">All my lists</h3>
+
 {% endif %}
 
     {% for todolist in object_list %}
-
         <div
-            class="button"
+            class="list-todo"
             role="button"
             onclick="location.href='{% url "list" todolist.id %}'">
-            <p class="btn"> {{ todolist.title }} </p>
+            <p> <span class="badge badge-secondary badge-pill">todo</span> {{ todolist.title }} </p>
         </div>
+       <p></p>
 
     {% empty %}
     <h4>You have no lists!</h4>
@@ -29,4 +31,5 @@
     Add a new list
     </button>
     </div>
+</div>
 {% endblock %}

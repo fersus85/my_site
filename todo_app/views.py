@@ -1,11 +1,20 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from .models import ToDoList, ToDoItem
+from run.models import Year
+from django.db.models import Sum
 
 
 class MainPage(ListView):
-    model = ToDoList
+    model = Year
     template_name = "todo_app/index.html"
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        total = Year.objects.aggregate(Sum('total'))
+        context["total"] = 'Run: ' + str(total['total__sum']) + ' ' + 'km'
+        return context
 
 
 class ListListView(ListView):
@@ -26,7 +35,7 @@ class ItemListView(ListView):
         return context
 
 
-class ListCreate(CreateView):
+class ListCreate(LoginRequiredMixin, CreateView):
     model = ToDoList
     fields = ["title"]
 
@@ -36,8 +45,7 @@ class ListCreate(CreateView):
         return context
 
 
-class ItemCreate(CreateView):
-
+class ItemCreate(LoginRequiredMixin, CreateView):
     model = ToDoItem
     fields = [
         "todo_list",
@@ -63,7 +71,7 @@ class ItemCreate(CreateView):
         return reverse("list", args=[self.object.todo_list_id])
 
 
-class ItemUpdate(UpdateView):
+class ItemUpdate(LoginRequiredMixin, UpdateView):
     model = ToDoItem
     fields = [
         "todo_list",
@@ -83,14 +91,14 @@ class ItemUpdate(UpdateView):
         return reverse("list", args=[self.object.todo_list_id])
 
 
-class ListDelete(DeleteView):
+class ListDelete(LoginRequiredMixin, DeleteView):
     model = ToDoList
     # You have to use reverse_lazy() instead of reverse(),
     # as the urls are not loaded when the file is imported.
     success_url = reverse_lazy("index")
 
 
-class ItemDelete(DeleteView):
+class ItemDelete(LoginRequiredMixin, DeleteView):
     model = ToDoItem
 
     def get_success_url(self):

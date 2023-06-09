@@ -1,5 +1,56 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
+{% load static %}
 {% block content %}
-Deriabin Home
+<div class="left-bar">
+  <img alt="" src="https://avatars.githubusercontent.com/u/103189677?v=4"
+     width="260" height="260" class="avatar">
+  <h3>
+    Deriabin Evgeniy
+    <small class="text-muted"> Fersus</small>
+  </h3>
+  <ul>
+      <li>
+          <svg height="32" aria-hidden="true" viewBox="0 0 19 19" version="1.1" width="32" data-view-component="true"
+               class="octicon octicon-mark-github v-align-middle">
+    <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+</svg><a href="https://github.com/fersus85">Github</a>
+      </li>
+      <li>
+          <img src="{% static 'images/email.svg' %}" width="27" height="27">
+          <a class="">Deriabin_85@mail.ru</a>
+      </li>
+  </ul>
+
+    <p> {{ total }} </p>
+
+ <img src="{% static 'images/prog.jpg' %}" width="360" height="130">
+</div>
+<div class="jumbotron bg-white border border-dark" >
+  <h4 class="display-4">Hello on my website. </h4>
+    <img class="wing" src="{% static 'images/pngwing.com.png' %}" width="300" height="200">
+  <p class="lead">It based on Django and Bootstrap and serve for training and represent my skill.</p>
+  <hr class="my-4">
+  <p>
+      I'm backend developer from Armavir. Former store manager who always wants to learn something new.
+      My goal is to become a cool developer and prove to myself that I am capable of more.
+      I like python and django. I think these guys are very powerful, and together we will reach the top.
+  <p class="lead">
+    <a class="btn btn-outline-secondary" href="https://github.com/fersus85" role="button">About my technology stack </a>
+  </p>
+  </p>
+    <hr class="my-4">
+  <p>
+      Now I have 4 app here. Blog where I gonna try to wright some post, Todo app for planning, and two apps for store
+      my read and run goals. This project is made in Django. Used My sql database. Appearance tinted with crispy form,
+      bootstrap and some custom css.
+
+        <p class="lead">
+    <a class="btn btn-outline-secondary" href="https://github.com/fersus85" role="button">Repo of this project</a>
+    <img class="rocket" src="{% static 'images/download.png' %}" width="300" height="100">
+  </p>
+  </p>
+
+</div>
+</div>
 {% endblock %}
