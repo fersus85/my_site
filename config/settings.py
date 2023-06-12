@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'todo_app',
     'blog',
     'run',
+    'read',
 ]
 
 MIDDLEWARE = [

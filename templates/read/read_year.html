@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} {{ year }} {% endblock %}
+{% load static %}
+{% block content %}
+<img class="book" src="{% static 'images/books.png' %}">
+<br>
+<h3 class="h3">{{ year }}</h3>
+<br>
+<div class="l_books">
+<ul>
+    {% for book in ooks %}
+    <li>{{ book.title }} by {{ book.author }} ({{ book.language }})</li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

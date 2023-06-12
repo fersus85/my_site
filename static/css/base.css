@@ -127,3 +127,17 @@ body {
   height: 30%;
   right: 0;
 }
+.l_books {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.2em;
+}
+.book {
+  position: fixed;
+  width: 30%;
+  height: 65%;
+  left: 0;
+  margin-left: 25px;
+  margin-top: 25px;
+}

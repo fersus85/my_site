@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% block title %} To do {% endblock %}
 {% block content %}
-
+{% load crispy_forms_tags %}
 <h3>{{ title }}</h3>
 <div>
     <div>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <input
+                class="btn btn-secondary"
                 value="Save"
                 type="submit">
             <input
+                class="btn btn-secondary"
                 value="Cancel"
                 type="button"
                 onclick="location.href='{% url "index" %}';">

@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from .models import ToDoList, ToDoItem
 from run.models import Year
+# from read.models import
 from django.db.models import Sum
 
 
@@ -93,8 +94,6 @@ class ItemUpdate(LoginRequiredMixin, UpdateView):
 
 class ListDelete(LoginRequiredMixin, DeleteView):
     model = ToDoList
-    # You have to use reverse_lazy() instead of reverse(),
-    # as the urls are not loaded when the file is imported.
     success_url = reverse_lazy("index")
 
 

@@ -9,6 +9,7 @@ whitenoise = "*"
 gunicorn = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 

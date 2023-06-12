@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
 {% load static %}
+{% load main_read_tags %}
 {% block content %}
 <div class="left-bar">
   <img alt="" src="https://avatars.githubusercontent.com/u/103189677?v=4"
@@ -22,7 +23,8 @@
       </li>
   </ul>
 
-    <p> {{ total }} </p>
+    <p> {{ total }} since 2014</p>
+    <p> Read: {% get_books_total %} books since 2021</p>
 
  <img src="{% static 'images/prog.jpg' %}" width="360" height="130">
 </div>

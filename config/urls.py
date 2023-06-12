@@ -25,5 +25,6 @@ urlpatterns = [
     path("", include("todo_app.urls")),
     path("", include("blog.urls")),
     path("", include("run.urls")),
+    path("", include("read.urls")),
     path("", MainPage.as_view(), name='home')
 ]
