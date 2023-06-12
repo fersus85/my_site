@@ -3,6 +3,8 @@
 {% load static %}
 {% load main_read_tags %}
 {% block content %}
+{% load cache %}
+{% cache 600 main %}
 <div class="left-bar">
   <img alt="" src="https://avatars.githubusercontent.com/u/103189677?v=4"
      width="260" height="260" class="avatar">
@@ -55,4 +57,5 @@
 
 </div>
 </div>
+{% endcache %}
 {% endblock %}

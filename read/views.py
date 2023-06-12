@@ -16,7 +16,7 @@ class YearListView(ListView):
     context_object_name = 'ooks'
 
     def get_queryset(self):
-        return Book.objects.filter(year_id=self.kwargs["year_id"])
+        return Book.objects.filter(year_id=self.kwargs["year_id"]).select_related('year')
 
     def get_context_data(self):
         context = super().get_context_data()

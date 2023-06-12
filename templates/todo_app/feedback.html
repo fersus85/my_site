@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Feedback {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3 class="h3">Feedback </h3>
+<form method="post">
+  {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-outline-secondary" >Send </button>
+</form>
+{% endblock %}

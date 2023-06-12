@@ -15,16 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-from todo_app.views import MainPage
+from config import settings
+from todo_app.views import MainPage, ContactViewForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
+    path('captcha/', include('captcha.urls')),
     path("", include("todo_app.urls")),
     path("", include("blog.urls")),
     path("", include("run.urls")),
     path("", include("read.urls")),
-    path("", MainPage.as_view(), name='home')
+    path("", MainPage.as_view(), name='home'),
+    path('feedback/', ContactViewForm.as_view(), name='feedback')
 ]
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+                      path('__debug__/', include(debug_toolbar.urls))
+                  ] + urlpatterns

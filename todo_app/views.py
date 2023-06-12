@@ -1,10 +1,23 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, FormView
+
+from .forms import ContactForm
 from .models import ToDoList, ToDoItem
 from run.models import Year
 # from read.models import
 from django.db.models import Sum
+
+
+class ContactViewForm(FormView):
+    form_class = ContactForm
+    template_name = 'todo_app/feedback.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return redirect('home')
 
 
 class MainPage(ListView):

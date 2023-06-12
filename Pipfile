@@ -10,6 +10,7 @@ gunicorn = "*"
 django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
 django-debug-toolbar = "*"
+django-simple-captcha = "*"
 
 [dev-packages]
 

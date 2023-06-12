@@ -9,6 +9,9 @@ class BlogListView(ListView):
     template_name = 'blog/blog_home.html'
     queryset = Post.objects.all().order_by('-date')
 
+    def get_queryset(self):
+        return Post.objects.all().select_related('author')
+
 
 class BlogDetailView(DetailView):
     model = Post
