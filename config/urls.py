@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from config import settings
-from todo_app.views import MainPage, ContactViewForm
+from todo_app.views import MainPage, contact_view, success_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +28,8 @@ urlpatterns = [
     path("", include("run.urls")),
     path("", include("read.urls")),
     path("", MainPage.as_view(), name='home'),
-    path('feedback/', ContactViewForm.as_view(), name='feedback')
+    path('feedback/', contact_view, name='feedback'),
+    path('success/', success_view, name='success'),
 ]
 if settings.DEBUG:
     import debug_toolbar
