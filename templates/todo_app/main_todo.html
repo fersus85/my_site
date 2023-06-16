@@ -2,6 +2,7 @@
 {% block title %} To do {% endblock %}
 {% load static %}
 {% block content %}
+<div class="main-todo"></div>
 <img class="td" src="{% static 'images/lf.png' %}">
 <!--index.html-->
 <div class="todo">
@@ -24,12 +25,13 @@
     {% endfor %}
 
 
-    <div class="b">
+    <div class="h3">
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "list-add" %}'"/>
     Add a new list
     </button>
     </div>
+</div>
 </div>
 {% endblock %}

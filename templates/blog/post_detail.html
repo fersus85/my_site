@@ -4,9 +4,8 @@
 {% block content %}
 
 <!--index.html-->
- <img class="img-post-det" style="" src="{% static 'images/bl.png' %}" >
- <img class="img-post-det2" style="" src="{% static 'images/bl.png' %}" >
     <div class="post-detail">
+        <img class="img-post-det" src="{% static 'images/blog.jpg' %}" >
         <h3 class="h3">{{ object.title}}</h3>
         <p style="text-align: center;"> author: {{ object.author }} | {{ object.date }}</p>
         <hr>

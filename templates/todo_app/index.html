@@ -5,9 +5,10 @@
 {% block content %}
 {% load cache %}
 {% cache 600 main %}
+<div class="new">
 <div class="left-bar">
   <img alt="" src="https://avatars.githubusercontent.com/u/103189677?v=4"
-     width="260" height="260" class="avatar">
+     width="200" height="200" class="avatar">
   <h3>
     Deriabin Evgeniy
     <small class="text-muted"> Fersus</small>
@@ -28,8 +29,9 @@
     <p> {{ total }} since 2014</p>
     <p> Read: {% get_books_total %} books since 2021</p>
 
- <img src="{% static 'images/prog.jpg' %}" width="360" height="130">
+ <img src="{% static 'images/prog.jpg' %}" width="310" height="130">
 </div>
+    </div>
 <div class="jumbotron bg-white border border-dark" >
   <h4 class="display-4">Hello on my website. </h4>
     <img class="wing" src="{% static 'images/pngwing.com.png' %}" width="300" height="200">

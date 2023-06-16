@@ -1,0 +1,147 @@
+.run {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 50%;
+  padding-top: 10px;
+}
+.avatar {
+  border-radius: 50%;
+
+}
+.new {
+  display: inline-block;
+  position: relative;
+  margin-top: 10px;
+}
+.navbar-dark .navbar-nav .nav-link {
+  font-size: x-large;
+}
+body {
+  font-family: "Ubuntu";
+}
+.left-bar {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  vertical-align: top;
+  margin-right: 10px;
+
+  }
+.jumbotron {
+  display: inline-block;
+  position: relative;
+  width: 70%;
+  border-radius: 5%;
+  vertical-align: top;
+  margin-top: 10px;
+
+}
+.rocket {
+
+}
+.wing {
+  position: relative;
+  left: 150px;
+}
+.list-todo {
+  background-color: #cccccc;
+  border: solid;
+  border-radius: 30px;
+  width: 50%;
+  height: 35px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 280px;
+}
+.h3 {
+  text-align: center;
+}
+.b {
+  margin-left: 500px;
+}
+
+
+.flor-but {
+  margin-left: 350px;
+}
+.td {
+  position: fixed;
+  width: 30%;
+  height: 30%;
+  left: 0;
+}
+.tdv {
+  position: fixed;
+  width: 30%;
+  height: 30%;
+  left: 0;
+}
+.post-img {
+  width: 350px;
+  height: 300px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.post {
+  display: inline-block;
+  width: 40%;
+  margin-top: 20px;
+  background-color: #ffffff;
+  margin-right: 20px;
+  margin-left: 60px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+.uk {
+  margin-left: 250px;
+  margin-bottom: 10px;
+}
+.post-detail {
+  display: block;
+  width: 60%;
+  height: 450px;
+  border: solid;
+  border-radius: 10px;
+  border-color: #CF6E30;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.btn-bot {
+  display: block;
+
+  width: 33%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.img-post-det {
+  position: fixed;
+  width: 25%;
+  height: 30%;
+  left: 0;
+}
+.img-post-det2 {
+  position: fixed;
+  width: 25%;
+  height: 30%;
+  right: 0;
+}
+.l_books {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.2em;
+}
+.book {
+  position: fixed;
+  width: 30%;
+  height: 65%;
+  left: 0;
+  margin-left: 25px;
+  margin-top: 25px;
+}

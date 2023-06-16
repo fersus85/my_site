@@ -6,10 +6,7 @@ register = template.Library()
 
 @register.simple_tag()
 def get_eng(year):
-    summ = cache.get('sum')
-    if not summ:
-        summ = year.books.filter(language='eng').aggregate(Count('title'))
-        cache.set('sum', summ, 120)
+    summ = year.books.filter(language='eng').aggregate(Count('title'))
     return summ['title__count']
 
 

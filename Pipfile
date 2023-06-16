@@ -11,6 +11,7 @@ django-crispy-forms = "*"
 crispy-bootstrap4 = "*"
 django-debug-toolbar = "*"
 django-simple-captcha = "*"
+environs = {extras = ["django"], version = "*"}
 
 [dev-packages]
 
