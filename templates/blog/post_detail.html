@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% block title %} {{ object.title}} {% endblock %}
+{% block title %} {{ post.title}} {% endblock %}
 {% load static %}
 {% block content %}
 
 <!--index.html-->
     <div class="post-detail">
         <img class="img-post-det" src="{% static 'images/blog.jpg' %}" >
-        <h3 class="h3">{{ object.title}}</h3>
-        <p style="text-align: center;"> author: {{ object.author }} | {{ object.date }}</p>
+        <h3 class="h3">{{ post.title}}</h3>
+        <p style="text-align: center;"> author: {{ post.author }} | {{ post.date }}</p>
         <hr>
-        <p>{{ object.body }}</p>
+        <p>{{ post.body }}</p>
     </div>
 <div class="btn-bot">
     <button
@@ -20,13 +20,13 @@
 
     <button
         type="button" class="btn btn-outline-secondary"
-        onclick="location.href='{% url "post_edit" post.pk %}'"/>
+        onclick="location.href='{% url "post_edit" post.slug %}'"/>
     Edit post
     </button>
 
     <button
         type="button" class="btn btn-outline-secondary"
-        onclick="location.href='{% url "post_delete" post.pk %}'"/>
+        onclick="location.href='{% url "post_delete" post.slug %}'"/>
     Delete post
     </button>
 </div>

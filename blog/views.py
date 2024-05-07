@@ -1,13 +1,17 @@
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView,
+    UpdateView,
+    CreateView,
+    DeleteView,
+    DetailView)
 from .models import Post
 
 
 class BlogListView(ListView):
     model = Post
     template_name = 'blog/blog_home.html'
-    queryset = Post.objects.all().order_by('-date')
 
     def get_queryset(self):
         return Post.objects.all().select_related('author')
@@ -16,9 +20,11 @@ class BlogListView(ListView):
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
+    slug_url_kwarg = 'post_slug'
+    context_object_name = 'post'
 
 
-class BlogCreateView(LoginRequiredMixin, CreateView):
+class BlogCreateView(UserPassesTestMixin, CreateView):
     model = Post
     template_name = 'blog/post_new.html'
     fields = ['title', 'body']
@@ -27,10 +33,14 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        return self.request.user.is_staff
+
 
 class BlogUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     template_name = 'blog/post_edit.html'
+    slug_url_kwarg = 'post_slug'
     fields = ['title', 'body']
 
     def test_func(self):
@@ -41,6 +51,7 @@ class BlogUpdateView(UserPassesTestMixin, UpdateView):
 class BlogDeleteView(UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_delete.html'
+    slug_url_kwarg = 'post_slug'
     success_url = reverse_lazy('blog_home')
 
     def test_func(self):

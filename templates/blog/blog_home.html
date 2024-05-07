@@ -6,24 +6,25 @@
 <!--index.html-->
 <div class="h3" style="background-color: #DDDFD4;">
 <h3 class="h3">All my notes </h3>
-
-    <button
-        type="button" class="btn btn-outline-secondary"
-        onclick="location.href='{% url "post_new" %}'"/>
-        New blog post
-    </button>
+    {% if user.is_staff %}
+        <button
+            type="button" class="btn btn-outline-secondary"
+            onclick="location.href='{% url "post_new" %}'"/>
+            New blog post
+        </button>
+    {% endif %}
 </div>
 <div class="bc">
     {% for post in object_list %}
 <article class="post">
     <img class="post-img" src="{% static 'images/blog.jpg' %}" >
-    <h3 class="h3" style="color: #5A8687;"> <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> </h3>
+    <h3 class="h3" style="color: #5A8687;"> <a href="{{ post.get_absolute_url }}">{{ post.title }}</a> </h3>
     <p style="text-align: center;">author: {{ post.author }} | {{ post.date }}</p>
     <hr>
      <p style="text-align: left;">{{ post.body|truncatewords:13 }}...</p>
 
     <div class="">
-    <a href="{% url 'post_detail' post.id %}">Read more >>></a>
+    <a href="{{ post.get_absolute_url }}">Read more >>></a>
     </div>
 </article>
     {% endfor %}
