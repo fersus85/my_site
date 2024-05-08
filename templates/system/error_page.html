@@ -2,8 +2,9 @@
 
 {% block content %}
     <br>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ error_message }} | <a href="{% url 'home' %}"><strong>Вернуться на главную</strong></a>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+    <br>
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }} <a href="{% url 'home' %}" class="alert-link">Перейти на домашнюю страницу</a>.
+      </div>
+
 {% endblock content %}

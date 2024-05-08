@@ -5,7 +5,7 @@
 
 <!--index.html-->
 <div class="h3" style="background-color: #DDDFD4;">
-<h1 class="" style="color: blue;">Записи </h1>
+<h1 class="" style="color: sky blue;">Записи </h1>
     {% if user.is_staff %}
         <button
             type="button" class="btn btn-outline-secondary"
@@ -13,7 +13,9 @@
             New blog post
         </button>
     {% else %}
-        <p style="font-size: 18px; color: grey;"> *Создавать, редактировать и удалять посты могут только пользователи с соответствующим разрешением.
+    <div class="alert alert-info" role="alert" style='font-size: 18px'>
+        Создавать, редактировать и удалять посты могут только пользователи с соответствующим разрешением.
+      </div>
     {% endif %}
 </div>
 <div class="bc">

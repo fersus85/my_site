@@ -170,9 +170,13 @@ CACHES = {
 
 RECIPIENTS_EMAIL = ['deriabin_85@mail.ru', ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'deriabin1985@gmail.com'
-EMAIL_HOST = 'smtp-relay.sendinblue.com'
-EMAIL_HOST_USER = 'deriabin_85@mail.ru'
-EMAIL_HOST_PASSWORD = 'YHQbSKhwzJx3R49d'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+
+EMAIL_HOST = env.str('SMTP_HOST')
+EMAIL_PORT = 465
+EMAIL_HOST_USER = env.str('SMTP_USER')
+EMAIL_HOST_PASSWORD = env.str('SMTP_PASSWORD')
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER

@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
 from .forms import ContactForm
-from config.settings import RECIPIENTS_EMAIL
+from config.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
 
 
 def contact_view(request):
@@ -13,8 +13,9 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
+            from_email = DEFAULT_FROM_EMAIL
             message = form.cleaned_data['message']
+            message += f"\tEmail from: {form.cleaned_data.get('from_email')}"
             try:
                 send_mail(f'{subject}', message,
                           from_email, RECIPIENTS_EMAIL)
@@ -40,7 +41,7 @@ def tr_handler403(request, exception):
         status=403,
         context={
             'title': 'Ошибка доступа: 403',
-            'error_message': 'Доступ к этой странице ограничен',
+            'error_message': 'Доступ к этой странице ограничен.',
             })
 
 
@@ -54,7 +55,7 @@ def tr_handler404(request, exception):
         status=404,
         context={
             'title': 'Страница не найдена: 404',
-            'error_message': 'К сожалению, такая страница не найдена',
+            'error_message': 'К сожалению, такая страница не найдена.',
         })
 
 
@@ -70,5 +71,5 @@ def tr_handler500(request):
             'title': 'Ошибка сервера: 500',
             'error_message': '''Внутренняя ошибка сайта,
                                 вернитесь на главную страницу,
-                                отчет мы направим администрации сайта''',
+                                отчет мы направим администрации сайта.''',
         })
