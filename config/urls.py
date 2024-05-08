@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from config import settings
-from todo_app.views import MainPage, contact_view, success_view
-from system.views import tr_handler403, tr_handler404, tr_handler500
+from todo_app.views import MainPage
+import system.views as sys_func
 
 
-handler403 = tr_handler403
-handler404 = tr_handler404
-handler500 = tr_handler500
+handler403 = sys_func.tr_handler403
+handler404 = sys_func.tr_handler404
+handler500 = sys_func.tr_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,8 +35,8 @@ urlpatterns = [
     path("", include("run.urls")),
     path("", include("read.urls")),
     path("", MainPage.as_view(), name='home'),
-    path('feedback/', contact_view, name='feedback'),
-    path('success/', success_view, name='success'),
+    path('feedback/', sys_func.contact_view, name='feedback'),
+    path('success/', sys_func.success_view, name='success'),
 ]
 if settings.DEBUG:
     import debug_toolbar

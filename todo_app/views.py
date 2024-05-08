@@ -1,41 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
-from django.http import BadHeaderError, HttpResponse
-from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView, FormView
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
-from config.settings import DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL
-from .forms import ContactForm
 from .models import ToDoList, ToDoItem
 from run.models import Year
-# from read.models import
 from django.db.models import Sum
-
-
-def contact_view(request):
-    if request.method == 'GET':
-        form = ContactForm()
-    elif request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
-            message = form.cleaned_data['message']
-            try:
-                send_mail(f'{subject}', message,
-                          from_email, RECIPIENTS_EMAIL)
-            except BadHeaderError:
-                return HttpResponse('Error subject')
-            return redirect('success')
-    else:
-        return HttpResponse('invalid request')
-    return render(request, "todo_app/feedback.html", {'form': form})
-
-
-def success_view(request):
-    return render(request, "todo_app/success.html",)
-
 
 
 class MainPage(ListView):

@@ -1,4 +1,33 @@
-from django.shortcuts import render
+from django.http import BadHeaderError, HttpResponse
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render
+
+from .forms import ContactForm
+from config.settings import RECIPIENTS_EMAIL
+
+
+def contact_view(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    elif request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(f'{subject}', message,
+                          from_email, RECIPIENTS_EMAIL)
+            except BadHeaderError:
+                return HttpResponse('Error subject')
+            return redirect('success')
+    else:
+        return HttpResponse('invalid request')
+    return render(request, "system/feedback.html", {'form': form})
+
+
+def success_view(request):
+    return render(request, "system/success.html",)
 
 
 def tr_handler403(request, exception):
@@ -7,7 +36,7 @@ def tr_handler403(request, exception):
     """
     return render(
         request=request,
-        template_name='blog/error_page.html',
+        template_name='system/error_page.html',
         status=403,
         context={
             'title': 'Ошибка доступа: 403',
@@ -21,7 +50,7 @@ def tr_handler404(request, exception):
     """
     return render(
         request=request,
-        template_name='blog/error_page.html',
+        template_name='system/error_page.html',
         status=404,
         context={
             'title': 'Страница не найдена: 404',
@@ -35,7 +64,7 @@ def tr_handler500(request):
     """
     return render(
         request=request,
-        template_name='blog/error_page.html',
+        template_name='system/error_page.html',
         status=500,
         context={
             'title': 'Ошибка сервера: 500',
