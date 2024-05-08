@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'blog',
     'run',
     'read',
+    'system',
 ]
 
 MIDDLEWARE = [

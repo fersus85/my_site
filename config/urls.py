@@ -17,6 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from config import settings
 from todo_app.views import MainPage, contact_view, success_view
+from system.views import tr_handler403, tr_handler404, tr_handler500
+
+
+handler403 = tr_handler403
+handler404 = tr_handler404
+handler500 = tr_handler500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
