@@ -5,13 +5,15 @@
 
 <!--index.html-->
 <div class="h3" style="background-color: #DDDFD4;">
-<h3 class="h3">All my notes </h3>
+<h1 class="" style="color: blue;">Записи </h1>
     {% if user.is_staff %}
         <button
             type="button" class="btn btn-outline-secondary"
             onclick="location.href='{% url "post_new" %}'"/>
             New blog post
         </button>
+    {% else %}
+        <p style="font-size: 18px; color: grey;"> *Создавать, редактировать и удалять посты могут только пользователи с соответствующим разрешением.
     {% endif %}
 </div>
 <div class="bc">
