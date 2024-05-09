@@ -145,3 +145,14 @@ body {
   margin-left: 25px;
   margin-top: 25px;
 }
+.list-main {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #93dca5;
+  border: solid;
+  border-radius: 15px;
+  width: 50%;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+}

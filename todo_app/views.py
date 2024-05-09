@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
@@ -14,11 +14,11 @@ class MainPage(ListView):
     def get_context_data(self):
         context = super().get_context_data()
         total = Year.objects.aggregate(Sum('total'))
-        context["total"] = 'Run: ' + str(total['total__sum']) + ' ' + 'km'
+        context["total"] = f"Run: {str(total['total__sum'])} km"
         return context
 
 
-class ListListView(ListView):
+class MainListView(ListView):
     model = ToDoList
     template_name = "todo_app/main_todo.html"
 
@@ -33,30 +33,37 @@ class ItemListView(ListView):
     def get_context_data(self):
         context = super().get_context_data()
         context["todo_list"] = ToDoList.objects.get(id=self.kwargs["list_id"])
+        context['title'] = 'Списки дел'
         return context
 
 
-class ListCreate(LoginRequiredMixin, CreateView):
+class ListCreate(UserPassesTestMixin, CreateView):
     model = ToDoList
     fields = ["title"]
 
     def get_context_data(self):
         context = super(ListCreate, self).get_context_data()
-        context["title"] = "Add a new list"
+        context["title"] = "Новый список дел"
         return context
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class ItemCreate(LoginRequiredMixin, CreateView):
+
+class ItemCreate(UserPassesTestMixin, CreateView):
     model = ToDoItem
     fields = [
         "todo_list",
         "title",
         "description",
         "due_date",
+        "owner",
     ]
 
     def get_initial(self):
         initial_data = super(ItemCreate, self).get_initial()
+        owner = self.request.user.id
+        initial_data['owner'] = owner
         todo_list = ToDoList.objects.get(id=self.kwargs["list_id"])
         initial_data["todo_list"] = todo_list
         return initial_data
@@ -65,14 +72,17 @@ class ItemCreate(LoginRequiredMixin, CreateView):
         context = super(ItemCreate, self).get_context_data()
         todo_list = ToDoList.objects.get(id=self.kwargs["list_id"])
         context["todo_list"] = todo_list
-        context["title"] = "Create a new item"
+        context["title"] = "Добавить дело"
         return context
 
     def get_success_url(self):
         return reverse("list", args=[self.object.todo_list_id])
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class ItemUpdate(LoginRequiredMixin, UpdateView):
+
+class ItemUpdate(UserPassesTestMixin, UpdateView):
     model = ToDoItem
     fields = [
         "todo_list",
@@ -85,19 +95,30 @@ class ItemUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self):
         context = super(ItemUpdate, self).get_context_data()
         context["todo_list"] = self.object.todo_list
-        context["title"] = "Edit item"
+        context["title"] = "Изменить дело"
         return context
 
     def get_success_url(self):
         return reverse("list", args=[self.object.todo_list_id])
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class ListDelete(LoginRequiredMixin, DeleteView):
+
+class ListDelete(UserPassesTestMixin, DeleteView):
     model = ToDoList
     success_url = reverse_lazy("index")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Удаление списка'
+        return context
 
-class ItemDelete(LoginRequiredMixin, DeleteView):
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class ItemDelete(UserPassesTestMixin, DeleteView):
     model = ToDoItem
 
     def get_success_url(self):
@@ -107,3 +128,6 @@ class ItemDelete(LoginRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context["todo_list"] = self.object.todo_list
         return context
+
+    def test_func(self):
+        return self.request.user.is_staff

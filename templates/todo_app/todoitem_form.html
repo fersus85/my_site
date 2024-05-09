@@ -1,6 +1,6 @@
 <!-- todo_list/todo_app/templates/todo_app/todoitem_form.html -->
 {% extends "base.html" %}
-{% block title %} To do {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
 
@@ -10,12 +10,12 @@
    <table>
        {{ form|crispy }}
     </table>
-    <button type="submit" class="btn btn-outline-secondary" >Submit</button>
+    <button type="submit" class="btn btn-outline-secondary" >Подтвердить</button>
     <button type="button" onclick="location.href='{% url "list" todo_list.id %}'"
-        class="btn btn-outline-secondary" >Cansel</button>
+        class="btn btn-outline-secondary" >Отмена</button>
         {% if object %}
     <button type="button" onclick="location.href='{% url "item-delete" todo_list.id object.id %}'"
-        class="btn btn-outline-secondary" >Delete item</button>
+        class="btn btn-outline-secondary" >Удалить дело</button>
 
     {% endif %}
 </form>

@@ -1,30 +1,30 @@
 {% extends "base.html" %}
-{% block title %} To do {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 {% load static %}
 {% block content %}
 <img class="td" src="{% static 'images/lf.png' %}">
 <div>
     <div>
         <div>
-            <h3 class="h3">Edit list:</h3>
-            <h3 class="h3">{{ todo_list.title | upper }}</h3>
+            <h3 class="h3">Изменить список:</h3>
+            <div
+            class="list-main">
+            <h3> {{ todo_list.title }}</h3>
+        </div>
+            <br>
         </div>
 
             {% for todo in object_list %}
             {% if todo.is_done %}
-
-
-                    <div
-                        class="list-todo"
-                        role="button"
-                        onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
-                        <p class="btn"><s>{{ todo.title }}
-                            (Due {{ todo.due_date | date:"l, F j" }}) </s></p>
+                <div
+                    class="list-todo"
+                    role="button"
+                    onclick="location.href= '{% url "item-update" todo_list.id todo.id %}'">
+                    <p class="btn"><s>{{ todo.title }}
+                        (Выполнить к {{ todo.due_date | date:"F j" }}) </s></p>
                 </div>
 <p></p>
-
            {% else %}
-
         <div
             class="list-todo"
             role="button"
@@ -36,17 +36,21 @@
 
            {% endif %}
             {% empty %}
-
-            <p><center>There are no to-do items in this list.</center></p>
+            <br>
+            <div class="alert alert-success" role="alert">
+                <h5 class="alert-heading" style="text-align: center;">В твоём списке нет ни одного дела!</h5>
+              </div>
             {% endfor %}
 <p></p>
   <div class="flor-but">
-            <button type="button" onclick="location.href='{% url "item-add" todo_list.id %}'"
-                class="btn btn-outline-secondary" >Add a new item</button>
-            <button type="button" onclick="location.href='{%  url "list-delete" todo_list.id  %}'"
-                class="btn btn-outline-secondary" >Delete this list </button>
-            <button type="button" onclick="location.href='{% url "index" %}'"
-                class="btn btn-outline-secondary" >Back to lists</button>
+      {% if user.is_staff %}
+      <button type="button" onclick="location.href='{% url "item-add" todo_list.id %}'"
+        class="btn btn-outline-secondary" >Добавить дело</button>
+      <button type="button" onclick="location.href='{%  url "list-delete" todo_list.id  %}'"
+        class="btn btn-outline-secondary" >Удалить лист </button>
+      {% endif %}
+      <button type="button" onclick="location.href='{% url "index" %}'"
+          class="btn btn-outline-secondary" >Ко всем спискам</button>
 </div>
 
 {% endblock %}

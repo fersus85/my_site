@@ -2,18 +2,24 @@
 {% block title %} To do {% endblock %}
 {% block content %}
 
-<h3>Delete To-do Item</h3>
+<br>
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Удалить дело</h4>
+    <p>Ты уверен, что хочешь удалить дело из списка {{ todo_list.title }}?</p>
+    <hr>
+    <p class="mb-0">Дело: {{ object.title }}</p>
+  </div>
 
-<p>Are you sure you want to delete the item: <b>{{ object.title }}</b>
-   from the list <i>{{ todo_list.title }}</i>?</p>
 
 <form method="POST">
     {% csrf_token %}
     <input
-        value="Yes, delete."
+        class="btn btn-outline-danger"
+        value="Удалить"
         type="submit">
     <input
-        value="Cancel"
+        class="btn btn-outline-secondary"
+        value="Отмена"
         type="button"
         onclick="location.href='{% url "list" todo_list.id %}';">
 </form>

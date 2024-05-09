@@ -1,21 +1,27 @@
 {% extends "base.html" %}
-{% block title %} To do {% endblock %}
+{% block title %} {{ title }} {% endblock %}
 {% block content %}
 <!--todolist_confirm_delete.html-->
+<br>
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Удалить список</h4>
+    <p>Ты уверен, что хочешь удалить список?</p>
+    <hr>
+    <p class="mb-0">Список дел: {{ object.title }}</p>
+  </div>
 
-<h3>Delete List</h3>
-
-<p>Are you sure you want to delete the list <i>{{ object.title }}</i>?</p>
 
 <form method="POST">
     {% csrf_token %}
     <input
-        value="Yes, delete."
+        class="btn btn-outline-danger"
+        value="Удалить"
         type="submit">
+    <input
+        class="btn btn-outline-secondary"
+        value="Отмена"
+        type="button"
+        onclick="location.href='{% url "index" %}';">
 </form>
-<input
-    value="Cancel"
-    type="button"
-    onclick="location.href='{% url "index" %}';">
 
 {% endblock %}

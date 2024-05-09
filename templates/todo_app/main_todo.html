@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} To do {% endblock %}
+{% block title %} Планы {% endblock %}
 {% load static %}
 {% block content %}
 <div class="main-todo"></div>
@@ -7,7 +7,7 @@
 <!--index.html-->
 <div class="todo">
 {% if object_list %}
-<h3 class="h3">All my lists</h3>
+<h3 class="h3"> Все твои списки </h3>
 
 {% endif %}
 
@@ -21,17 +21,21 @@
        <p></p>
 
     {% empty %}
-    <h4>You have no lists!</h4>
+    <div class="alert alert-success" role="alert">
+        <h5 class="alert-heading" style="text-align: center;">У тебя нет планов!</h5>
+      </div>
     {% endfor %}
 
 
+    {% if user.is_staff %}
     <div class="h3">
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "list-add" %}'"/>
-    Add a new list
+    Добавить список дел
     </button>
     </div>
+    {% endif %}
 </div>
 </div>
 {% endblock %}

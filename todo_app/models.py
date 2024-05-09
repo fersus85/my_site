@@ -4,11 +4,13 @@ from django.urls import reverse
 
 
 def one_week_hence():
-    return timezone.now() + timezone.timedelta(days=7)
+    hence = timezone.now() + timezone.timedelta(days=7)
+    return hence
 
 
 class ToDoList(models.Model):
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=True,
+                             verbose_name='Название')
 
     def get_absolute_url(self):
         return reverse("list", args=[self.id])
@@ -18,12 +20,17 @@ class ToDoList(models.Model):
 
 
 class ToDoItem(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    due_date = models.DateTimeField(default=one_week_hence)
-    todo_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE)
-    is_done = models.BooleanField(default=False)
+    title = models.CharField(max_length=100, verbose_name='Название')
+    description = models.TextField(null=True,
+                                   blank=True,
+                                   verbose_name='Описание')
+    created_date = models.DateTimeField(auto_now_add=True,
+                                        verbose_name='Дата создания')
+    due_date = models.DateTimeField(default=one_week_hence,
+                                    verbose_name='Закончить к')
+    todo_list = models.ForeignKey(ToDoList, on_delete=models.CASCADE,
+                                  verbose_name='Список дел')
+    is_done = models.BooleanField(default=False, verbose_name='Сделано')
 
     def get_absolute_url(self):
         return reverse(
