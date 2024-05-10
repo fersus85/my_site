@@ -3,10 +3,12 @@
 {% block title %} Delete year {% endblock title %}
 
 {% block content %}
-<p> Delete year </p>
+<br>
 <form action="" method="post"> {% csrf_token %}
-    <p>Are you sure want to delete {{ year.title }} | {{ year.owner }}?</p>
-    <button type="submit" class="btn btn-danger" >Delete</button>
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Удалить год</h4>
+        <p>Ты уверен, что хочешь удалить {{ object.year }} год?</p>
+        <button type="submit" class="btn btn-danger" >Удалить</button>
+      </div>
 </form>
-
 {% endblock content %}

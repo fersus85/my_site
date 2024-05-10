@@ -3,11 +3,10 @@
 {% block title %} New Year {% endblock title %}
 
 {% block content %}
-<h4> Add new running year! </h4>
+<h4> Добавь новый беговой год </h4>
 <form action="" method="post"> {% csrf_token %}
     {{ form|crispy }}
-    {{ user }}
-    <button type="submit" class="btn btn-outline-secondary" >Add new year</button>
+    <button type="submit" class="btn btn-outline-secondary" >Добавить</button>
 </form>
 
 {% endblock content %}

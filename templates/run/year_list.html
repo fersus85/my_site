@@ -3,20 +3,21 @@
 {% block title %} Delete or edit {% endblock title %}
 
 {% block content %}
-<div class="article-entry">
-<h3> Delete or edit your run year! </h3>
-{% for year in years %}
-<p>{{ year.title }} | {{ year.owner }}</p>
-
-<button type="button" class="btn btn-outline-secondary"
+<div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Редактировать или удалить год</h4>
+        <p class="mb-0">Список дел:</p>
+        <hr>
+        {% for year in years %}
+        <p >{{ year.year }} год </p>
+        <button type="button" class="btn btn-outline-danger"
         onclick="location.href='{% url "delete_year" year.pk %}'"/>
-Delete year
-</button>
- <button type="button" class="btn btn-outline-secondary"
-        onclick="location.href='{% url "edit_year" year.pk %}'"/>
-Edit year
-</button>
+        Удалить
+        </button>
+        <button type="button" class="btn btn-outline-danger"
+                onclick="location.href='{% url "edit_year" year.pk %}'"/>
+        Редактировать
+        </button>
+        <hr>
+        {% endfor %}
     </div>
-{% endfor %}
-
 {% endblock content %}
