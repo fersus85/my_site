@@ -8,8 +8,8 @@
 <br>
 <div class="l_books">
 <ul>
-    {% for book in ooks %}
-    <li>{{ book.title }} by {{ book.author }} ({{ book.language }})</li>
+    {% for book in books %}
+    <li>{{ book.title }} от автора: {{ book.author }} ({{ book.language }})</li>
     {% endfor %}
 </ul>
 </div>

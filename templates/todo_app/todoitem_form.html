@@ -15,8 +15,10 @@
         class="btn btn-outline-secondary" >Отмена</button>
         {% if object %}
     <button type="button" onclick="location.href='{% url "item-delete" todo_list.id object.id %}'"
-        class="btn btn-outline-secondary" >Удалить дело</button>
+        class="btn btn-outline-danger" >Удалить дело</button>
 
     {% endif %}
 </form>
+<hr>
+<br>
 {% endblock %}

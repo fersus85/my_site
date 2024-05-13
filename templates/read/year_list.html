@@ -3,21 +3,22 @@
 {% block title %} Delete or edit {% endblock title %}
 
 {% block content %}
+<br>
 <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">Редактировать или удалить год</h4>
         <p class="mb-0">Список:</p>
         <hr>
         {% for year in years %}
-        <p >{{ year.year }} год </p>
+        <p>{{ year.title }} год </p>
         <button type="button" class="btn btn-outline-danger"
-        onclick="location.href='{% url "delete_year" year.pk %}'"/>
+        onclick="location.href='{% url "read_app:del_read_year" year.pk %}'"/>
         Удалить
         </button>
         <button type="button" class="btn btn-outline-danger"
-                onclick="location.href='{% url "edit_year" year.pk %}'"/>
+                onclick="location.href='{% url "read_app:edit_read_year" year.pk %}'"/>
         Редактировать
         </button>
         <hr>
         {% endfor %}
-    </div>
+        </div>
 {% endblock content %}

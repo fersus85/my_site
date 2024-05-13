@@ -57,7 +57,6 @@ class ItemCreate(UserPassesTestMixin, CreateView):
         "title",
         "description",
         "due_date",
-        "owner",
     ]
 
     def get_initial(self):

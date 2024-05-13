@@ -33,7 +33,7 @@ urlpatterns = [
     path("", include("todo_app.urls")),
     path("", include("blog.urls")),
     path("", include("run.urls")),
-    path("", include("read.urls")),
+    path("read/", include(("read.urls", 'read'), namespace='read_app')),
     path("", MainPage.as_view(), name='home'),
     path('feedback/', sys_func.contact_view, name='feedback'),
     path('success/', sys_func.success_view, name='success'),

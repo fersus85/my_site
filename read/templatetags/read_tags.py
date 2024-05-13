@@ -1,6 +1,7 @@
 from django import template
-from django.db.models import Sum, Count
-from django.core.cache import cache
+from django.db.models import Count
+
+
 register = template.Library()
 
 

@@ -1,29 +1,26 @@
 {% extends 'base.html' %}
 {% load read_tags %}
 {% load static %}
-{% block title %} Read {% endblock title %}
+{% block title %} Библиотека {% endblock title %}
 
 {% block content %}
-<h2 align="center"><font color="1B545F" face="Ubuntu">This is app for contain my reading goals.</font> </h2>
+<h2 align="center"><font color="1B545F" face="Ubuntu"> Книжная полка по годам </font> </h2>
 <!--<img class="run" src="{% static 'images/buty1.jpg' %}">-->
 <p></p>
-<p style="text-align: center;">Here I store my books.</p>
-
-
 <table border="1" class="table table-striped" style="width:80%; margin-left: auto; margin-right: auto;
     text-align:center;">
   <thead>
   <tr>
-    <th>Year</th>
-    <th>Count books</th>
-    <th> Rus </th>
-    <th> Eng </th>
+    <th>Год</th>
+    <th>Общее количество</th>
+    <th> На русском </th>
+    <th> На английском </th>
   </tr>
   </thead>
   <tbody>
   {% for year in years %}
   <tr>
-      <th> <a href="{% url 'read_year' year.id %}">{{ year.title }} </a> </th>
+      <th> <a href="{% url 'read_app:read_year' year.id %}">{{ year.title }} </a> </th>
       <td class="table-primary">{{ year.books.all.count}}</td>
       <td> {% get_rus year %} </td>
       <td> {% get_eng year %} </td>
@@ -31,13 +28,18 @@
   {% endfor %}
   <tbody>
 </table>
-<div style="width:30%; margin-left: auto; margin-right: auto;">
+<div style="width:55%; margin-left: auto; margin-right: auto;">
 <button type="button" class="btn btn-outline-secondary"
-        onclick="location.href='{% url "year_new" %}'"/>
-Add new year</button>
+        onclick="location.href='{% url "read_app:year_new" %}'"/>
+        Добавить год
+</button>
 <button type="button" class="btn btn-outline-secondary"
-        onclick="location.href='{% url "book_new" %}'"/>
-Add new book
+        onclick="location.href='{% url "read_app:year_list" %}'"/>
+        Редактировать год
+</button>
+<button type="button" class="btn btn-outline-secondary"
+        onclick="location.href='{% url "read_app:book_new" %}'"/>
+Добавить книгу
 </button>
 </div>
 

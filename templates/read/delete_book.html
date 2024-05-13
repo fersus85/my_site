@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} Delete year {% endblock title %}
+{% block title %} Удалить книгу {% endblock title %}
 
 {% block content %}
 <br>
 <form action="" method="post"> {% csrf_token %}
     <div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading">Удалить год</h4>
-        <p>Ты уверен, что хочешь удалить {{ object.year }} год?</p>
+        <h4 class="alert-heading">Удалить книгу</h4>
+        <p>Ты уверен, что хочешь удалить {{ object.title }} книгу?</p>
         <button type="submit" class="btn btn-danger" >Удалить</button>
       </div>
 </form>
