@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %} Add post {% endblock %}
+{% block title %} Новый пост {% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
-<h3> New post </h3>
+<h3> Новый пост </h3>
 <form action="" method="post">
     {% csrf_token %}
        {{ form|crispy }}
     <input
-        value="Save"
+        value="Сохранить"
         type="Submit"
         class="btn btn-secondary"
     >

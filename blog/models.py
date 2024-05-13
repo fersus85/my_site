@@ -4,12 +4,11 @@ from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 
 
-# Create your models here.
 class Post(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name='Название')
     slug = models.SlugField(max_length=50, db_index=True, unique=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    body = models.TextField()
+    body = models.TextField(verbose_name='Пост')
     date = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):

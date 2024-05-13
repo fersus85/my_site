@@ -10,7 +10,7 @@
         <button
             type="button" class="btn btn-outline-secondary"
             onclick="location.href='{% url "post_new" %}'"/>
-            New blog post
+            Новый пост
         </button>
     {% else %}
     <div class="alert alert-info" role="alert" style='font-size: 18px'>
@@ -23,12 +23,12 @@
 <article class="post">
     <img class="post-img" src="{% static 'images/blog.jpg' %}" >
     <h3 class="h3" style="color: #5A8687;"> <a href="{{ post.get_absolute_url }}">{{ post.title }}</a> </h3>
-    <p style="text-align: center;">author: {{ post.author }} | {{ post.date }}</p>
+    <p style="text-align: center;">Автор: {{ post.author }} | {{ post.date }}</p>
     <hr>
      <p style="text-align: left;">{{ post.body|truncatewords:13 }}...</p>
 
     <div class="">
-    <a href="{{ post.get_absolute_url }}">Read more >>></a>
+    <a href="{{ post.get_absolute_url }}">Читать >>></a>
     </div>
 </article>
     {% endfor %}

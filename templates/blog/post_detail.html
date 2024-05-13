@@ -7,7 +7,7 @@
     <div class="post-detail">
         <img class="img-post-det" src="{% static 'images/blog.jpg' %}" >
         <h3 class="h3">{{ post.title}}</h3>
-        <p style="text-align: center;"> author: {{ post.author }} | {{ post.date }}</p>
+        <p style="text-align: center;"> Автор: {{ post.author }} | {{ post.date }}</p>
         <hr>
         <p>{{ post.body }}</p>
     </div>
@@ -15,19 +15,19 @@
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "blog_home" %}'"/>
-    Back to all notes
+    На главную
     </button>
 
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "post_edit" post.slug %}'"/>
-    Edit post
+    Редактировать
     </button>
 
     <button
         type="button" class="btn btn-outline-secondary"
         onclick="location.href='{% url "post_delete" post.slug %}'"/>
-    Delete post
+    Удалить пост
     </button>
 </div>
 {% endblock %}

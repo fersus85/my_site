@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block title %} Delete post {% endblock %}
 {% block content %}
-
-<h3> Delete post </h3>
+<br>
 <form action="" method="post">
-    {% csrf_token %}
-       <p>Are yoy shure you want to delete "{{ post.title }}"</p>
-    <input
-        value="Confirm"
-        type="submit"
-        class="btn btn-danger">
+     {% csrf_token %}
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Удалить год</h4>
+        <p>Ты уверен, что хочешь удалить {{ post.title }}?</p>
+        <button type="submit" class="btn btn-danger" >Удалить</button>
+      </div>
 </form>
+<br>
+<hr>
 {% endblock %}
