@@ -1,9 +1,23 @@
 from django.http import BadHeaderError, HttpResponse
+from django.views.generic import ListView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
+from django.db.models import Sum
 
 from .forms import ContactForm
 from config.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
+from run.models import Year
+
+
+class MainPage(ListView):
+    model = Year
+    template_name = "system/index.html"
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        total = Year.objects.aggregate(Sum('total'))
+        context["total"] = f"Run: {str(total['total__sum'])} km"
+        return context
 
 
 def contact_view(request):

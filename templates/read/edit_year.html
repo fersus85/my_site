@@ -12,7 +12,7 @@
         {% for book in books %}
         <p> Название: {{ book.title }}</p>
         <button type="button" class="btn btn-outline-danger"
-        onclick="location.href='{% url "read_app:delete_book" book.pk %}'"/>
+        onclick="location.href='{% url "read_app:del_book" book.pk %}'"/>
         Удалить
         </button>
        <button type="button" class="btn btn-outline-secondary"

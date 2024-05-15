@@ -3,19 +3,6 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
 from .models import ToDoList, ToDoItem
-from run.models import Year
-from django.db.models import Sum
-
-
-class MainPage(ListView):
-    model = Year
-    template_name = "todo_app/index.html"
-
-    def get_context_data(self):
-        context = super().get_context_data()
-        total = Year.objects.aggregate(Sum('total'))
-        context["total"] = f"Run: {str(total['total__sum'])} km"
-        return context
 
 
 class MainListView(ListView):

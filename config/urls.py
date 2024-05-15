@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from config import settings
-from todo_app.views import MainPage
 import system.views as sys_func
 
 
@@ -26,15 +25,15 @@ handler404 = sys_func.tr_handler404
 handler500 = sys_func.tr_handler500
 
 urlpatterns = [
+    path("", sys_func.MainPage.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("accounts.urls")),
     path('captcha/', include('captcha.urls')),
-    path("", include("todo_app.urls")),
-    path("", include("blog.urls")),
-    path("", include("run.urls")),
+    path("to-do/", include("todo_app.urls")),
+    path("post/", include("blog.urls")),
+    path("run/", include("run.urls")),
     path("read/", include(("read.urls", 'read'), namespace='read_app')),
-    path("", MainPage.as_view(), name='home'),
     path('feedback/', sys_func.contact_view, name='feedback'),
     path('success/', sys_func.success_view, name='success'),
 ]

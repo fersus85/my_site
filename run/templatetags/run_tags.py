@@ -8,8 +8,7 @@ register = template.Library()
 
 @register.simple_tag()
 def get_total(year: Year):
-    s = year.get_month()
-    return sum(s)
+    return sum(year.get_month())
 
 
 @register.simple_tag()

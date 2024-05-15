@@ -11,11 +11,11 @@
         {% for year in years %}
         <p>{{ year.title }} год </p>
         <button type="button" class="btn btn-outline-danger"
-        onclick="location.href='{% url "read_app:del_read_year" year.pk %}'"/>
+        onclick="location.href='{% url "read_app:del_year" year.pk %}'"/>
         Удалить
         </button>
         <button type="button" class="btn btn-outline-danger"
-                onclick="location.href='{% url "read_app:edit_read_year" year.pk %}'"/>
+                onclick="location.href='{% url "read_app:edit_year" year.pk %}'"/>
         Редактировать
         </button>
         <hr>

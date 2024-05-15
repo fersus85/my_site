@@ -34,7 +34,7 @@ class RunYearListView(UserPassesTestMixin, ListView):
         return self.request.user.is_staff
 
 
-class RunYearDeleteView(UserPassesTestMixin, DeleteView):
+class RunDelView(UserPassesTestMixin, DeleteView):
     model = Year
     fields = ('year', 'total',)
     template_name = 'run/delete_year.html'
@@ -44,7 +44,7 @@ class RunYearDeleteView(UserPassesTestMixin, DeleteView):
         return self.request.user.is_staff
 
 
-class RunYearUpdateView(UserPassesTestMixin, UpdateView):
+class RunUpdateView(UserPassesTestMixin, UpdateView):
     model = Year
     fields = '__all__'
     template_name = 'run/edit_year.html'

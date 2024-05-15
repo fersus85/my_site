@@ -20,7 +20,7 @@ class BlogListView(ListView):
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
-    slug_url_kwarg = 'post_slug'
+    slug_url_kwarg = 'slug'
     context_object_name = 'post'
 
 
@@ -40,7 +40,7 @@ class BlogCreateView(UserPassesTestMixin, CreateView):
 class BlogUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
     template_name = 'blog/post_edit.html'
-    slug_url_kwarg = 'post_slug'
+    slug_url_kwarg = 'slug'
     fields = ['title', 'body']
 
     def test_func(self):
@@ -51,7 +51,7 @@ class BlogUpdateView(UserPassesTestMixin, UpdateView):
 class BlogDeleteView(UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'blog/post_delete.html'
-    slug_url_kwarg = 'post_slug'
+    slug_url_kwarg = 'slug'
     success_url = reverse_lazy('blog_home')
 
     def test_func(self):
