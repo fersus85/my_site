@@ -120,7 +120,7 @@ body {
 }
 .btn-bot {
   display: block;
-  width: 33%;
+  width: 36%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -156,4 +156,9 @@ body {
   height: 50px;
   text-align: center;
   vertical-align: middle;
+}
+.comment {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
 }

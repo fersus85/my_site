@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %} {{ post.title}} {% endblock %}
 {% load static %}
 {% block content %}
@@ -29,5 +30,21 @@
         onclick="location.href='{% url "post_delete" post.slug %}'"/>
     Удалить пост
     </button>
+</div>
+<br>
+<div class="comment">
+    <form method="post" name="comment">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-outline-secondary" >Отправить</button>
+    </form>
+    <br>
+    {% for comment in comments %}
+        <div class="alert alert-secondary" role="alert">
+            <p class="alert-heading">Автор: {{comment.author}}
+                <hr>
+            <p> {{ comment.body }} 
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

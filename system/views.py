@@ -45,17 +45,20 @@ def success_view(request):
     return render(request, "system/success.html",)
 
 
-def tr_handler403(request, exception):
+def tr_handler403(request, exception=None, msg=None):
     """
     Обработка ошибки 403
     """
+    message = 'Доступ к этой странице ограничен.'
+    if msg:
+        message = msg
     return render(
         request=request,
         template_name='system/error_page.html',
         status=403,
         context={
             'title': 'Ошибка доступа: 403',
-            'error_message': 'Доступ к этой странице ограничен.',
+            'error_message': message,
             })
 
 
