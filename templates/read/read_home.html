@@ -21,9 +21,10 @@
   {% for year in years %}
   <tr>
       <th> <a href="{% url 'read_app:read_year' year.id %}">{{ year.title }} </a> </th>
-      <td class="table-primary">{{ year.books.all.count}}</td>
-      <td> {% get_rus year %} </td>
-      <td> {% get_eng year %} </td>
+      {% count_by_lang year as count_dict %}
+      <td class="table-primary">{{ count_dict.total }}</td>
+      <td>{{ count_dict.rus }}</td>
+      <td>{{ count_dict.eng }}</td>
   </tr>
   {% endfor %}
   <tbody>

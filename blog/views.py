@@ -24,15 +24,17 @@ class BlogListView(ListView):
 
 class BlogDetailView(FormMixin, DetailView):
     model = Post
+    context_object_name = 'post'
     form_class = CommentForm
     template_name = 'blog/post_detail.html'
     slug_url_kwarg = 'slug'
-    context_object_name = 'post'
+
+    def get_queryset(self):
+        return Post.objects.all().select_related('author')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        post = Post.objects.get(slug=self.kwargs['slug'])
-        context["comments"] = post.comments.all()
+        context["comms"] = self.object.comments.all().select_related('author')
         return context
 
     def get_success_url(self):
@@ -47,9 +49,8 @@ class BlogDetailView(FormMixin, DetailView):
         form = self.get_form()
         if form.is_valid():
             comment = form.cleaned_data['comment']
-            cont_obj = Post.objects.get(slug=self.kwargs['slug'])
             Comment.objects.create(body=comment, author=request.user,
-                                   content_object=cont_obj)
+                                   content_object=self.object)
             return self.form_valid(form)
         else:
             return self.form_invalid(form)

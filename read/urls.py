@@ -4,7 +4,7 @@ from django.views.decorators.cache import cache_page
 
 urlpatterns = [
      path("",
-          cache_page(15)(vs.HomeListView.as_view()), name="read_home"),
+          cache_page(30)(vs.HomeListView.as_view()), name="read_home"),
      # year
      path("<int:year_id>/", vs.YearListView.as_view(), name="read_year"),
      path("new_year/", vs.YearCreateView.as_view(), name="year_new"),

@@ -3,8 +3,6 @@
 {% load static %}
 {% load main_read_tags %}
 {% block content %}
-{% load cache %}
-{% cache 600 main %}
 <div class="new">
 <div class="left-bar">
   <img alt="" src="https://avatars.githubusercontent.com/u/103189677?v=4"
@@ -25,10 +23,8 @@
           <a class="">Deriabin_85@mail.ru</a>
       </li>
   </ul>
-
     <p> {{ total }} since 2014</p>
     <p> Read: {% get_books_total %} books since 2021</p>
-
  <img src="{% static 'images/prog.jpg' %}" width="310" height="130">
 </div>
     </div>
@@ -59,5 +55,4 @@
 
 </div>
 </div>
-{% endcache %}
 {% endblock %}
