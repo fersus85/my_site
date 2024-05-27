@@ -1,8 +1,45 @@
-# my_site
+# Личный сайт на Django. 
 
-      Now I have 4 app here. Blog where I gonna try to wright some post, Todo app for planning, and two apps for store
-      my read and run goals. This project  made with Django. Used Mysql database. Appearance tinted with crispy form,
-      bootstrap and some custom css. 
-      Implemented the following features:
-      Login, Logout, Change password. Also used django caching features (api, view and template), optimized with 
-      django debug toolbar. In the feedback section, the ability to send email is implemented (check with captcha).
+## Используемый стек технологий
+- Poetry - менеджер зависимостей
+- environs - парсинг переменных окружения
+- Фреймворк Django
+- Фреймворк Bootstrap
+- Django-crispy-forms - улучшение отображения форм
+- MySQL - база данных
+- Docker, docker-compose
+
+## Фичи
+1. Регистрация пользователя
+2. Аутентификация и авторизация пользователя
+3. Приложение для ведения личного блога
+      - CRUD для постов в блоге
+      - Возможность оставлять комментарии зарегестрированным пользователям
+4. Приложение для хранения беговой статистики
+      - CRUD для годов учета бег статистики
+      - Подсчитывает общий пробег
+5. Приложение для хранения читательской статистики
+      - CRUD для годов учета чит статистики
+      - Подсчитывает общее кол-во книг
+6. Приложение ToDo, учёт дел 
+      - CRUD для списков дел / дел
+      - Возможность устанавливать deadline
+      - Вычеркивать выполненные дела
+7. Страница для отправки обратной связи
+      - Отправляет письмо с обратной связью через SMTP
+
+
+## Запуск приложения локально с помощью Docker
+1. Клонируйте репозиторий:
+    ```bash
+    git clone git@github.com:fersus85/my_site.git
+    ```
+2. Перейдите в директорию проекта:
+    ```bash
+    cd my_site
+    ```
+3. Запустите docker-compose:
+    ```bash
+    docker compose up --build -d
+   ```
+4. Откройте в браузере адрес: 127.0.0.1:8000
